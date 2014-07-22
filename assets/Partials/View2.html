@@ -1,0 +1,96 @@
+<div style="height: 65px; background-color: #111 !important;
+            background: url('assets/static/pw_maze_black.png') repeat center center;
+            background-size: auto auto;">
+    <div style="height: 50px; width: 50px; position: absolute;
+      margin-top: 8px;
+      right: 1%; background-color: rgb(0, 0, 0);
+      background-image: url('assets/static/avatar_2x.png');
+      background-size: cover; background-repeat: no-repeat;
+      border-radius: 185px; border-color: rgb(0, 0, 0);
+      border-width: 1px; border-style: solid; ">
+
+    </div>
+    <div style="color: #FFFFFF; position:absolute; ">
+        <h2>{{"Welcome " + data.name | username | titleCase }}</h2>
+    </div>
+</div>
+
+
+
+
+
+<div class="col-md-12" style="margin-top: 10px" >
+    <div class="row">
+        <div class="col-sm-2">
+            <div class="jumbotron">
+
+                <h2 style="margin-top: -20px">Super Heroes</h2>
+
+                <input style="margin-bottom: 10px;" type="text" ng-model="searchText.name" ng-change="checkAndChange()" class = "form-control" placeholder="Search">
+
+                <div class="list-group animate-repeat" ng-repeat=" actor in (newEmp = (emp | filter : searchText))" style="margin-bottom: -2px;" ng-animate=" 'animate' ">
+                    <a ng-click="setIndex($index); ModEdit(false); ModShow(true); ModAdd(false);" class="list-group-item">{{actor.name}}</a><!--onclick="alert('selected')"-->
+                </div>
+                <!--<ul class="example-animate-container">
+                    <li class="animate-repeat" ng-repeat=" actor in (newEmp = (emp | filter : searchText))">
+                        <a ng-click="setIndex($index); ModEdit(false); ModShow(true); ModAdd(false);" class="list-group-item">{{actor.name}}</a>
+                    </li>
+                </ul>-->
+
+                <button ng-click="ModEdit(false); ModShow(false); ModAdd(true);" class="btn btn-success pull-right" style="margin-top: 8px">Add New</button>
+
+            </div>
+        </div>
+        <div class="col-sm-8 animate-show" ng-show="show">
+            <ul class="list-group">
+                <li href="#" class="list-group-item active">
+                    DETAILS
+                </li>
+                <li href="#" class="list-group-item">Name: {{newEmp[cIndex].name}}</li>
+                <li href="#" class="list-group-item">Skills: {{newEmp[cIndex].skills.toString()}}</li>
+                <li href="#" class="list-group-item">Team: {{newEmp[cIndex].team}}</li>
+                <li href="#" class="list-group-item">City: {{newEmp[cIndex].city}}</li>
+            </ul>
+
+            <button ng-click="deleteProf(newEmp[cIndex].id); ModEdit(false); ModShow(true); ModAdd(false);" class="btn btn-danger pull-right" style="margin: 2px">Delete</button>
+            <button ng-click="ModEdit(true); ModShow(false); ModAdd(false);" class="btn btn-warning pull-right" style="margin: 2px" id="editButton">Edit</button>
+        </div>
+        <div class="col-sm-8 animate-show" ng-show="edit">
+            <ul class="list-group">
+                <li href="#" class="list-group-item active">
+                    EDIT DETAILS
+                </li>
+                <li href="#" class="list-group-item"><input type="text" ng-model="moddata.name" class="form-control" placeholder="Alias"></li>
+                <li href="#" class="list-group-item"><input type="text" ng-model="moddata.skills" class="form-control" placeholder="Skills"></li>
+                <li href="#" class="list-group-item"><input type="text" ng-model="moddata.team" class="form-control" placeholder="Team"></li>
+                <li href="#" class="list-group-item"><input type="text" ng-model="moddata.city" class="form-control" placeholder="City"></li>
+            </ul>
+            <button ng-click="deleteProf(newEmp[cIndex].id); ModEdit(false); ModShow(true); ModAdd(false);" class="btn btn-danger pull-right" style="margin: 2px">Delete</button>
+            <button ng-click="updateProf(); ModEdit(false); ModShow(true); ModAdd(false);" class="btn btn-success pull-right" style="margin: 2px">Save</button>
+
+        </div>
+        <div class="col-sm-8 animate-show" ng-show="add">
+            <ul class="list-group">
+                <li href="#" class="list-group-item active">
+                    ADD NEW HERO
+                </li>
+                <li href="#" class="list-group-item"><input type="text" ng-model="newdata.name" class="form-control" placeholder="Alias"></li>
+                <li href="#" class="list-group-item"><input type="text" ng-model="newdata.skills" class="form-control" placeholder="Skills"></li>
+                <li href="#" class="list-group-item"><input type="text" ng-model="newdata.team" class="form-control" placeholder="Team"></li>
+                <li href="#" class="list-group-item"><input type="text" ng-model="newdata.city" class="form-control" placeholder="City"></li>
+            </ul>
+            <button ng-click="deleteProf(newEmp[cIndex].id); ModEdit(false); ModShow(true); ModAdd(false);" class="btn btn-danger pull-right" style="margin: 2px">Cancel</button>
+            <button ng-click="insertUser(); updateIndex(); ModEdit(false); ModShow(true); ModAdd(false);" class="btn btn-success pull-right" style="margin: 2px">Save</button>
+
+
+        </div>
+
+        <div class="col-sm-8" ng-show="malert">
+            <div class="alert alert-danger" role="alert">No results found, try something else.</div>
+        </div>
+
+    </div>
+</div>
+
+
+

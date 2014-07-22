@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-push-3">
+            <h2>{{"Welcome " + data.name | username | titleCase }}!!</h2>
+            <div class="jumbotron">
+                <div class="row">
+                    <div class="col-md-12" style="padding-bottom: 10px;">
+                        <input type="text" ng-model="data.name" class="form-control" placeholder="Username">
+                    </div>
+
+                    <div class="col-md-12" style="padding-bottom: 10px;">
+                        <input type="password" class="form-control" placeholder="Password">
+
+                    </div>
+                    <div class="col-md-12">
+                        <button ng-click="redirectTo('welcome')" class="btn btn-primary pull-right" type="submit">Submit</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
